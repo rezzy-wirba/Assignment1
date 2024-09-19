@@ -1,0 +1,114 @@
+/*
+ * Class: CMSC203 
+ * Instructor: Ahmed Tarek
+ * Description: This program has a list of colors from which the computer picks one at random and asks the
+user to to guess what color the compiter picked. It then calculates how many times the user guessed the right color.
+ * Due: 09/18/2024
+ * Platform/compiler:
+ * I pledge that I have completed the programming assignment 
+* independently. I have not copied the code from a student or   * any source. I have not given my code to any student.
+ * Print your Name here: __Ridvan Wirba________
+*/
+package CMSC203;
+import java.util.Scanner;
+import java.util.*; 
+
+public class Assignment1_ {
+	public static final String COLOR_RED = "Red";
+	public static final String COLOR_GREEN = "Green";
+	public static final String COLOR_BLUE = "Blue";
+	public static final String COLOR_ORANGE = "Orange";
+	public static final String COLOR_BLACK = "Black";
+	public static final String COLOR_WHITE = "White";
+	public static final String COLOR_YELLOW = "Yellow";
+
+	  // Declare constant for total number of guesses
+	    public static final int totalGuesses = 11;
+	    
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner scan1 = new Scanner(System.in);
+		Random random = new Random();
+
+		
+		System.out.println("Enter your name: ");
+		String name = scan1.nextLine(); 
+		System.out.println("Enter your M#");
+		String mNumber = scan1.nextLine();
+		System.out.println("Describe yourself: ");
+		String description = scan1.nextLine();
+		System.out.println("Enter due date: ");
+		String dueDate = scan1.nextLine();
+		System.out.println("CMSC203 Assignment 1: Test your ESP skills!");
+		System.out.println("Round 1 \n");
+		
+		 // Initialize the variables for number of correct guesses
+        int correctGuesses = 0;
+
+        // Repeat the guessing process 11 times
+        for (int i = 1; i <= totalGuesses; i++) {
+            // Randomly select a number between 0 and 6
+            int randomNumber = random.nextInt(7); // Random number from 0 to 6
+		
+            String selectedColor = "";
+            //Assign the random numbers chosen to colors as different cases
+            switch (randomNumber) {
+                case 0: selectedColor = COLOR_RED;
+                break;
+                case 1: selectedColor = COLOR_GREEN ;
+                break;
+                case 2: selectedColor = COLOR_BLUE;
+                break;
+                case 3:  selectedColor = COLOR_ORANGE;
+                break;
+                case 4: selectedColor = COLOR_BLACK;
+                break;
+                case 5: selectedColor = COLOR_WHITE;
+                break;
+                case 6: selectedColor = COLOR_YELLOW;
+                break;
+            }
+            // Ask the user to guess the color
+            String userGuess;
+            while (true) {
+                System.out.println("\nRound " + i + "\nI am thinking of a color. \n Is it red, green, blue, orange, black white or yellow?");
+                userGuess = scan1.nextLine();
+
+                // Validate the input
+                if (userGuess.equalsIgnoreCase(COLOR_RED) ||
+                    userGuess.equalsIgnoreCase(COLOR_GREEN) ||
+                    userGuess.equalsIgnoreCase(COLOR_BLUE) ||
+                    userGuess.equalsIgnoreCase(COLOR_ORANGE) ||
+                    userGuess.equalsIgnoreCase(COLOR_BLACK) ||
+                    userGuess.equalsIgnoreCase(COLOR_WHITE) ||
+                    userGuess.equalsIgnoreCase(COLOR_YELLOW)) {
+                    break; // Valid input
+                } else {
+                    System.out.println("You entered incorrect color.\n Is it Red, Green, Blue, Orange,black white or Yellow?\r\n"
+                    		+ "Enter your guess again: ");
+                }
+            }
+            // Compare the user's guess with the selected color
+            if (userGuess.equalsIgnoreCase(selectedColor)) {
+                System.out.println("Correct! The color was " + selectedColor);
+                correctGuesses++;  // Increment correct guesses if they guessed right
+            } else {
+                System.out.println("Incorrect. The color was " + selectedColor);
+                // No need to break the loop, just continue to the next round.
+            }
+	}
+        System.out.println("Game over");
+        // Display the user's results
+           System.out.println("\nYou guessed " + correctGuesses + " out of " + totalGuesses + " correctly.");
+
+           // Display the user’s name, MC M#, self-description, and due date
+           System.out.println("Name: " + name);
+           System.out.println("MC M#: " + mNumber);
+           System.out.println("Description: " + description);
+           System.out.println("Due Date: " + dueDate);
+
+     // Close the scanner
+        scan1.close();
+}
+}
